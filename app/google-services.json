@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "176424318192",
+    "project_id": "flash-sports-kotlin",
+    "storage_bucket": "flash-sports-kotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176424318192:android:e105c7fc93467a26cf3e35",
+        "android_client_info": {
+          "package_name": "com.example.flashsportskotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176424318192-d1q2mc0jgfi9tits6178si4h5d68jlce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjpkS81vV_1t-fdDFBUG_0An74ssWVVfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176424318192-d1q2mc0jgfi9tits6178si4h5d68jlce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
