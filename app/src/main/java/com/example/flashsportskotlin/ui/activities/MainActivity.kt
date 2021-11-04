@@ -13,6 +13,7 @@ import com.example.flashsportskotlin.utils.makeVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val HOME_FRAGMENT = 1
+
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(), AlertDialogCallback {
 
