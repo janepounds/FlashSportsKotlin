@@ -1,60 +1,55 @@
 package com.example.flashsportskotlin.ui.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.example.flashsportskotlin.R
+import com.example.flashsportskotlin.data.models.ScreenItem
+import com.example.flashsportskotlin.databinding.FragmentIntroBinding
+import com.example.flashsportskotlin.ui.adapters.screen.IntroAdapter
+import com.example.flashsportskotlin.ui.base.BaseFragment
+import com.example.flashsportskotlin.utils.navigateUsingPopUp
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class IntroFragment : BaseFragment<FragmentIntroBinding>(){
+    override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?)= FragmentIntroBinding.inflate(inflater,container,false)
 
-/**
- * A simple [Fragment] subclass.
- * Use the [IntroFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class IntroFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun setupTheme() {
+        setupViewPager()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    }
+
+    override fun setupClickListeners() {
+        binding.skipTv.setOnClickListener {
+            navController.navigateUsingPopUp(R.id.introFragment, R.id.action_global_welcomeFragment)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment IntroFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            IntroFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        binding.nextBtn.setOnClickListener {
+            val currentItem = binding.viewPager.currentItem
+            if (currentItem + 1 < binding.viewPager.adapter?.itemCount!!) {
+                binding.viewPager.setCurrentItem(currentItem + 1, true)
+            } else {
+                navController.navigateUsingPopUp(R.id.introFragment, R.id.action_global_welcomeFragment)
             }
+        }
+
     }
+
+    private fun setupViewPager(){
+        val screenItems: ArrayList<ScreenItem> = ArrayList()
+        screenItems.add(ScreenItem(drawableId = R.drawable.ic_coach_instructor, title = getString(R.string.intro_screen_1)))
+        screenItems.add(ScreenItem(drawableId = R.drawable.ic_training, title = getString(R.string.intro_screen_2)))
+        screenItems.add(ScreenItem(drawableId = R.drawable.ic_ratings, title = getString(R.string.intro_screen_3)))
+
+        val introAdapter = IntroAdapter(screenItems)
+        binding.viewPager.adapter = introAdapter
+        binding.viewPager.offscreenPageLimit = 3
+
+        val tabConfigurationStrategy = TabLayoutMediator.TabConfigurationStrategy { _: TabLayout.Tab, _: Int -> }
+        TabLayoutMediator(binding.viewpagerIndicator, binding.viewPager, true, tabConfigurationStrategy)
+
+    }
+
 }

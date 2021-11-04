@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/navigation_main">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.flashsportskotlin.ui.fragments.SplashFragment"
+        android:label="Splash Fragment"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_splashFragment_to_introFragment"
+            app:destination="@id/introFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.example.flashsportskotlin.ui.fragments.IntroFragment"
+        android:label="IntroFragment"
+        tools:layout="@layout/fragment_intro"/>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.flashsportskotlin.ui.fragments.navigation.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+
+    <action
+        android:id="@+id/action_global_welcomeFragment"
+        app:destination="@id/homeFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
+
 
 </navigation>

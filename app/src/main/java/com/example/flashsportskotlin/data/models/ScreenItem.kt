@@ -1,4 +1,7 @@
 package com.example.flashsportskotlin.data.models
 
-class ScreenItem {
-}
+class ScreenItem (
+    val drawableId: Int,
+    val title: String,
+    val subtitle: String? = ""
+)
