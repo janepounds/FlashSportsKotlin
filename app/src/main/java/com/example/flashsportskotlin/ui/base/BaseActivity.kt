@@ -11,9 +11,10 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.flashsportskotlin.R
 
-abstract class BaseActivity<dataBinding: ViewDataBinding> :AppCompatActivity() {
-    lateinit var binding:dataBinding
-    lateinit var navController:NavController
+abstract class BaseActivity<dataBinding : ViewDataBinding> : AppCompatActivity() {
+
+    protected lateinit var binding: dataBinding
+    protected lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +35,10 @@ abstract class BaseActivity<dataBinding: ViewDataBinding> :AppCompatActivity() {
     abstract fun setupNavigation()
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

@@ -19,7 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), AlertDialogCallback {
 
     private var currentFragment = -1
 
-    override fun getActivityBinding(inflater: LayoutInflater)= ActivityMainBinding.inflate(inflater)
+    override fun getActivityBinding(inflater: LayoutInflater) = ActivityMainBinding.inflate(inflater)
 
     override fun setupTheme() {
     }
